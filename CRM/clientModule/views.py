@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render
 
 from .models import Client
 # Create your views here.
@@ -11,6 +12,7 @@ def index(request):
 
 
 def detail(request, client_id):
-    return HttpResponse("Client %s" % client_id)
+    client = get_object_or_404(Client, pk=client_id)
+    return render(request, 'clientModule/detail.html', {'client': client})
 
 

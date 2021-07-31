@@ -1,0 +1,8 @@
+<h1>{{ client.full_name }}</h1>
+<p>{{ client.email }}</p>
+<p>{{ client.phone }}</p>
+<ul>
+    {% for address in client.address_set.all %}
+        <li>{{ address.street_name }}</li>
+    {% endfor %}
+</ul>

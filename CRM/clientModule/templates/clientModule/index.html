@@ -1,7 +1,7 @@
 {% if clients_list %}
     <ul>
         {% for client in clients_list %}
-            <li><a href="/client/{{ client.id }}/">{{ client.full_name }}</a></li>
+            <li><a href="{% url 'clientModule:detail' client.id %}">{{ client.full_name }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
