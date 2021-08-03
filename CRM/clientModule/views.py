@@ -1,6 +1,7 @@
 from django.http import Http404
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 
+from .forms import ClientForm
 from .models import Client
 # Create your views here.
 
@@ -14,5 +15,15 @@ def index(request):
 def detail(request, client_id):
     client = get_object_or_404(Client, pk=client_id)
     return render(request, 'clientModule/detail.html', {'client': client})
+
+
+def edit(request, client_id):
+    client = get_object_or_404(Client, pk=client_id)
+    form = ClientForm(request.POST, instance=client)
+    if form.is_valid():
+        form.save()
+        return redirect("clientModule/index")
+    return render(request, 'clientModule/edit.html', {'client': client})
+
 
 

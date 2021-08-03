@@ -1,9 +1,27 @@
-{% if clients_list %}
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Index</title>
+
+        {% load static %}
+
+        <link rel="stylesheet" type="text/css" href="{% static 'clientModule/bulma.min.css' %}">
+    </head>
+    <body>
+        {% if clients_list %}
     <ul>
         {% for client in clients_list %}
             <li><a href="{% url 'clientModule:detail' client.id %}">{{ client.full_name }}</a></li>
+            <div class="control">
+                <a class="button is-success" href="{% url 'clientModule:edit' client.id %}">Editar</a>
+            </div>
         {% endfor %}
     </ul>
 {% else %}
     <p>Nenhum cliente cadastrado.</p>
 {% endif %}
+    </body>
+</html>
+
